@@ -6,7 +6,7 @@ export const protect = async (req, res, next) => {
     // console.log("tokrn -" , token);
     
     if (!token) {
-        return res.json({ success: false, message: "Not Authorize" })
+        return res.json({ success: false, message: "Not Authorized" })
 
     }
     try {
@@ -14,7 +14,7 @@ export const protect = async (req, res, next) => {
         console.log("userid -" , userId);
         
         if (!userId) {
-            return res.json({ success: false, message: "Not Authorize" })
+            return res.json({ success: false, message: "Not Authorized" })
         }
         req.user = await User.findById(userId).select("-password");
         console.log("req.user in protext -",req.user);
