@@ -1,7 +1,7 @@
 
 import Navbar from  './Components/Navbar/Navbar' 
 import { Route, Routes, useLocation } from 'react-router'
-import Home from './pages/Home'
+import Home from './Pages/Home'
 import MyBookings from './Pages/MyBookings'
 import Footer from './Components/Footer'
 import Layout from './Pages/Owner/Layout'
