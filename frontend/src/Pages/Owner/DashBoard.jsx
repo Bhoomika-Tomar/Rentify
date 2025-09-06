@@ -43,39 +43,47 @@ const DashBoard = () => {
         {
             title: "Total Rents",
             value: datax.totalRent,
-            icon: assets.carIconColored
+            icon: assets.carIconColored,
+            color: "from-indigo-500 to-indigo-600"
         },
         {
             title: "Total Bookings",
             value: datax.totalBookings,
-            icon: assets.listIconColored
+            icon: assets.listIconColored,
+            color: "from-emerald-500 to-emerald-600"
         },
         {
             title: "Pending",
             value: datax.pendingBookings,
-            icon: assets.cautionIconColored
+            icon: assets.cautionIconColored,
+            color: "from-yellow-400 to-yellow-500"
         },
         {
             title: "Confirmed",
             value: datax.completedBookings,
-            icon: assets.listIconColored
+            icon: assets.listIconColored,
+            color: "from-pink-500 to-pink-600"
         },
     ];
 
     return (
-        <div className='px-4 pt-10 md:px-10 flex-1 bg-gray-50 min-h-screen'>
+        <div className='px-4 pt-10 md:px-10 flex-1 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen'>
             <Title title='Landlord Dashboard' subTitle='Overview of fleet, bookings, and revenue' />
 
             {/* Cards */}
             <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-10'>
                 {DashBoardCards.map((card, index) => (
-                    <div key={index} className='bg-white shadow-md rounded-2xl p-5 flex justify-between items-center hover:shadow-lg transition-all duration-300'>
+                    <div
+                        key={index}
+                        className={`bg-white shadow-lg hover:shadow-xl rounded-2xl p-5 flex justify-between items-center 
+                        border border-gray-100 transform hover:-translate-y-1 hover:scale-105 transition-all duration-300`}
+                    >
                         <div>
-                            <h2 className='text-sm text-gray-500'>{card.title}</h2>
-                            <p className='text-xl font-bold text-gray-800'>{card.value}</p>
+                            <h2 className='text-sm font-medium text-gray-500'>{card.title}</h2>
+                            <p className='text-2xl font-extrabold text-gray-800 mt-1'>{card.value}</p>
                         </div>
-                        <div className='flex items-center justify-center w-12 h-12 rounded-full bg-blue-100'>
-                            <img src={card.icon} alt="" className='w-5 h-5' />
+                        <div className={`flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${card.color} shadow-md`}>
+                            <img src={card.icon} alt="" className='w-6 h-6 text-white' />
                         </div>
                     </div>
                 ))}
@@ -85,23 +93,23 @@ const DashBoard = () => {
             <div className='flex flex-col lg:flex-row gap-6 w-full mb-10'>
 
                 {/* Recent Bookings */}
-                <div className='bg-white shadow-md rounded-2xl p-6 flex-1'>
+                <div className='bg-white shadow-lg hover:shadow-xl rounded-2xl p-6 flex-1 border border-gray-100 transition-all duration-300'>
                     <h1 className="text-lg font-semibold text-gray-800">Recent Bookings</h1>
                     <p className='text-sm text-gray-500 mb-4'>Latest customer bookings</p>
 
                     {datax.recentBookings.length > 0 ? (
                         datax.recentBookings.map((booking, index) => (
-                            <div key={index} className='mt-4 flex items-center justify-between'>
+                            <div
+                                key={index}
+                                className='mt-4 flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition duration-200'
+                            >
                                 {/* Left Section */}
                                 <div className='flex items-center gap-3'>
-                                    <div className='hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-blue-200'>
+                                    <div className='hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-blue-100'>
                                         <img src={assets.listIconColored} alt="" className='h-5 w-5' />
                                     </div>
                                     <div className='text-sm text-gray-700'>
-                                        {/* ✅ Check whether booking has property or car */}
-                                        {booking.property
-                                            ? booking.property.type
-                                            : "Car Booking"}
+                                        {booking.property ? booking.property.type : "Car Booking"}
                                         <span className="block text-xs text-gray-400">
                                             {(booking.startDate || booking.createdAt).split('T')[0]}
                                         </span>
@@ -110,13 +118,14 @@ const DashBoard = () => {
 
                                 {/* Right Section */}
                                 <div className='flex items-center gap-2'>
-                                    <p className='text-sm font-medium text-gray-700'>
+                                    <p className='text-sm font-semibold text-gray-700'>
                                         ${booking.price || "N/A"}
                                     </p>
                                     <p
-                                        className={`px-3 py-0.5 border rounded-full text-sm font-medium ${booking.status === 'Pending'
-                                            ? 'text-yellow-600 border-yellow-400'
-                                            : 'text-green-600 border-green-400'
+                                        className={`px-3 py-0.5 border rounded-full text-xs font-medium shadow-sm 
+                                        ${booking.status === 'Pending'
+                                                ? 'text-yellow-600 border-yellow-300 bg-yellow-50'
+                                                : 'text-green-600 border-green-300 bg-green-50'
                                             }`}
                                     >
                                         {booking.status}
@@ -130,10 +139,12 @@ const DashBoard = () => {
                 </div>
 
                 {/* Monthly Revenue */}
-                <div className='bg-white shadow-md rounded-2xl p-6 w-full lg:w-[350px]'>
+                <div className='bg-white shadow-lg hover:shadow-xl rounded-2xl p-6 w-full lg:w-[350px] border border-gray-100 transition-all duration-300'>
                     <h1 className="text-lg font-semibold text-gray-800">Monthly Revenue</h1>
                     <p className='text-sm text-gray-500 mb-2'>Revenue for the current month</p>
-                    <div className='mt-4 text-3xl font-bold text-green-600'>${datax.monthlyRevenue}</div>
+                    <div className='mt-4 text-4xl font-extrabold bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent animate-pulse'>
+                        ${datax.monthlyRevenue}
+                    </div>
                     <p className="text-xs text-gray-400 mt-1">Includes all completed bookings</p>
                 </div>
 
@@ -143,3 +154,4 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
+

@@ -7,12 +7,7 @@ import menu_icon from "./menu_icon.svg";
 import search_icon from "./search_icon.svg"
 import close_icon from "./close_icon.svg"
 import users_icon from "./users_icon.svg"
-import car_icon from "./car_icon.svg"
-import location_icon from "./location_icon.svg"
-import fuel_icon from "./fuel_icon.svg"
 import addIcon from "./addIcon.svg"
-import carIcon from "./carIcon.svg"
-import carIconColored from "./carIconColored.svg"
 import dashboardIcon from "./dashboardIcon.svg"
 import dashboardIconColored from "./dashboardIconColored.svg"
 import addIconColored from "./addIconColored.svg"
@@ -57,14 +52,12 @@ export const assets = {
     close_icon,
     users_icon,
     edit_icon,
-    car_icon,
-    location_icon,
-    fuel_icon,
+   // location_icon,
+   // fuel_icon,
     addIcon,
-    carIcon,
-    carIconColored,
-    dashboardIcon,
-    dashboardIconColored,
+    //carIcon,
+  //  dashboardIcon,
+   // dashboardIconColored,
     addIconColored,
     listIcon,
     listIconColored,
@@ -105,13 +98,13 @@ export const menuLinks = [
 export const ownerMenuLinks = [
     { name: "Dashboard", path: "/owner", icon: dashboardIcon, coloredIcon: dashboardIconColored },
     { name: "List Property", path: "/owner/add-property", icon: addIcon, coloredIcon: addIconColored },
-    { name: "Manage Property", path: "/owner/manage-property", icon: carIcon, coloredIcon: carIconColored },
+    { name: "Manage Property", path: "/owner/manage-property", icon: addIcon, coloredIcon: listIconColored },
     { name: "Manage Bookings", path: "/owner/manage-bookings", icon: listIcon, coloredIcon: listIconColored },
 ]
 
 export const dummyUserData = {
   "_id": "6847f7cab3d8daecdb517095",
-  "name": "Kanishq Singh",
+  "name": "Singh",
   "email": "admin@example.com",
   "role": "owner",
   "image": user_profile,
