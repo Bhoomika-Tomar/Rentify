@@ -9,7 +9,7 @@ import userRouter from './Routes/userRoutes.js'
 
 const app = express();
 
-// Always import from db.js, not db
+
 await connextDB();
 
 // Middleware
@@ -23,7 +23,7 @@ app.use('/api/user', userRouter);
 app.use('/api/owner', ownerRouter);
 app.use('/api/bookings', bookingRouter);
 
-// Use Render's dynamic port
+
 const PORT = process.env.PORT || 5000;
 
 // Bind to 0.0.0.0 instead of localhost
