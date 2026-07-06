@@ -10,7 +10,7 @@ export const protect = async (req, res, next) => {
 
     }
     try {
-        const userId = jwt.decode(token, process.env.JWT_SECRET);
+        const userId = jwt.verify(token, process.env.JWT_SECRET);
         console.log("userid -" , userId);
         
         if (!userId) {

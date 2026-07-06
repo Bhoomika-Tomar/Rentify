@@ -10,7 +10,11 @@ const connectDB = async () => {
             console.error(" Database connection error:", err);
         });
 
-        await mongoose.connect(`${process.env.MONGODB_URI}/rentify`, {
+        const connectionUri = process.env.MONGODB_URI.includes('/rentify')
+            ? process.env.MONGODB_URI
+            : `${process.env.MONGODB_URI}/rentify`;
+
+        await mongoose.connect(connectionUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             serverSelectionTimeoutMS: 10000 // wait max 10 sec

@@ -26,6 +26,9 @@ export const addProperty = async (req, res) => {
         const { _id } = req.user;
         let property = JSON.parse(req.body.propertyData);
         const imageFile = req.file;
+        if (!imageFile) {
+            return res.json({ success: false, message: "Image is required" });
+        }
 
         const fileBuffer = fs.readFileSync(imageFile.path);
 
@@ -185,6 +188,9 @@ export const updateUserImage = async (req, res) => {
         const { _id } = req.user;
 
         const imageFile = req.file;
+        if (!imageFile) {
+            return res.json({ success: false, message: "Image is required" });
+        }
 
         const fileBuffer = fs.readFileSync(imageFile.path);
 

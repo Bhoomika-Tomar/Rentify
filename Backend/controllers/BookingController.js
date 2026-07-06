@@ -3,9 +3,9 @@ import Property from "../models/Properties.js";
 
 
 //Function to check availabilbity of car 
-const checkAvailability = async (car, startDate, returnDate) => {
+const checkAvailability = async (property, startDate, returnDate) => {
     const bookings = await Booking.find({
-        car,
+        property,
         startDate: { $lte: returnDate },
         returnDate: { $gte: startDate }
     })
